@@ -41,8 +41,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Hero.setImage(assets.image`Normal`)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (sprite, location) {
-    info.changeScoreBy(200)
-    Set_Level(2)
+	
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite2, location2) {
     info.changeScoreBy(50)
@@ -123,6 +122,11 @@ function Floor_Tile (level: number) {
     	
     }
     return 0
+}
+function NextLevel () {
+    info.changeScoreBy(200)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    Set_Level(2)
 }
 let Ghost: Sprite = null
 let Floor_Tile_Return = 0
