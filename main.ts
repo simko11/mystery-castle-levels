@@ -87,10 +87,13 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sp
     LifeLost()
 })
 function LifeLost () {
-    info.changeLifeBy(-1)
-    Ghost_Speed = 20
-    tiles.placeOnRandomTile(Hero, sprites.dungeon.collectibleInsignia)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    if (game.runtime() - Killed_at_ms > 200) {
+        Killed_at_ms = game.runtime()
+        info.changeLifeBy(-1)
+        Ghost_Speed = 20
+        tiles.placeOnRandomTile(Hero, sprites.dungeon.collectibleInsignia)
+        sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    }
 }
 function NextLevel () {
     info.changeScoreBy(200)
@@ -105,6 +108,8 @@ function NextLevel () {
         tiles.setTilemap(tilemap`Level_3`)
     } else if (Level == 4) {
         tiles.setTilemap(tilemap`Level_4`)
+    } else if (Level == 5) {
+        tiles.setTilemap(tilemap`Level_5`)
     } else {
         game.over(true)
     }
@@ -117,6 +122,7 @@ let Ghost: Sprite = null
 let Ghost_Speed = 0
 let TileX = 0
 let TileY = 0
+let Killed_at_ms = 0
 let Level = 0
 let Hero: Sprite = null
 Hero = sprites.create(assets.image`Normal`, SpriteKind.Player)
@@ -124,7 +130,8 @@ controller.moveSprite(Hero)
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(3)
-Level = 0
+Level = 2
+Killed_at_ms = 0
 info.setScore(-200)
 NextLevel()
 game.onUpdateInterval(10000, function () {
