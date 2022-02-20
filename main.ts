@@ -124,7 +124,7 @@ controller.moveSprite(Hero)
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(3)
-Level = 3
+Level = 0
 info.setScore(-200)
 NextLevel()
 game.onUpdateInterval(10000, function () {
