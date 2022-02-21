@@ -1,4 +1,5 @@
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairNorth, function (sprite, location) {
+    Safe_at_ms = game.runtime()
     NextLevel()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite3, otherSprite) {
@@ -39,6 +40,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Hero.setImage(assets.image`Normal`)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (sprite, location) {
+    Safe_at_ms = game.runtime()
     NextLevel()
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite2, location2) {
@@ -87,8 +89,8 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sp
     LifeLost()
 })
 function LifeLost () {
-    if (game.runtime() - Killed_at_ms > 200) {
-        Killed_at_ms = game.runtime()
+    if (game.runtime() - Safe_at_ms > 200) {
+        Safe_at_ms = game.runtime()
         info.changeLifeBy(-1)
         Ghost_Speed = 20
         tiles.placeOnRandomTile(Hero, sprites.dungeon.collectibleInsignia)
@@ -98,8 +100,9 @@ function LifeLost () {
 function NextLevel () {
     info.changeScoreBy(200)
     Level += 1
+    info.changeLifeBy(1)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-    Ghost_Speed = 20
+    Ghost_Number += 1
     if (Level == 1) {
         tiles.setTilemap(tilemap`Level_1`)
     } else if (Level == 2) {
@@ -110,33 +113,40 @@ function NextLevel () {
         tiles.setTilemap(tilemap`Level_4`)
     } else if (Level == 5) {
         tiles.setTilemap(tilemap`Level_5`)
+    } else if (Level == 6) {
+        tiles.setTilemap(tilemap`Level_6`)
     } else {
         game.over(true)
     }
     tiles.placeOnRandomTile(Hero, sprites.dungeon.collectibleInsignia)
+    Ghost_Speed = 20
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairSouth, function (sprite, location) {
+    Safe_at_ms = game.runtime()
     NextLevel()
 })
 let Ghost: Sprite = null
 let Ghost_Speed = 0
 let TileX = 0
 let TileY = 0
-let Killed_at_ms = 0
+let Safe_at_ms = 0
 let Level = 0
 let Hero: Sprite = null
 Hero = sprites.create(assets.image`Normal`, SpriteKind.Player)
 controller.moveSprite(Hero)
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
-info.setLife(3)
-Level = 2
-Killed_at_ms = 0
+info.setLife(2)
+Level = 4
+Safe_at_ms = 0
 info.setScore(-200)
+let Ghost_Number = 1
 NextLevel()
 game.onUpdateInterval(10000, function () {
-    Ghost = sprites.create(assets.image`skellyFront`, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(Ghost, sprites.dungeon.greenOuterNorth2)
-    Ghost.follow(Hero, Ghost_Speed)
+    for (let index = 0; index < Ghost_Number; index++) {
+        Ghost = sprites.create(assets.image`skellyFront`, SpriteKind.Enemy)
+        tiles.placeOnRandomTile(Ghost, sprites.dungeon.greenOuterNorth2)
+        Ghost.follow(Hero, Ghost_Speed)
+    }
     Ghost_Speed += 5
 })
