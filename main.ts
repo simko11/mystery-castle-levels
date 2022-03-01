@@ -114,7 +114,7 @@ function NextLevel () {
     } else if (Level == 5) {
         tiles.setTilemap(tilemap`Level_5`)
     } else if (Level == 6) {
-        tiles.setTilemap(tilemap`Level4`)
+        tiles.setTilemap(tilemap`Level_6`)
     } else {
         game.over(true)
     }
