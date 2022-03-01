@@ -39,6 +39,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     Hero.setImage(assets.image`Normal`)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava0, function (sprite, location) {
+    LifeLost()
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (sprite, location) {
     Safe_at_ms = game.runtime()
     NextLevel()
@@ -67,26 +70,23 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
             tiles.setTileAt(Wert6, sprites.dungeon.darkGroundCenter)
             tiles.setWallAt(Wert6, false)
         }
-        for (let Wert6 of tiles.getTilesByType(sprites.dungeon.greenOuterEast0)) {
-            tiles.setTileAt(Wert6, sprites.dungeon.darkGroundCenter)
-            tiles.setWallAt(Wert6, false)
+        for (let Wert62 of tiles.getTilesByType(sprites.dungeon.greenOuterEast0)) {
+            tiles.setTileAt(Wert62, sprites.dungeon.darkGroundCenter)
+            tiles.setWallAt(Wert62, false)
         }
-        for (let Wert6 of tiles.getTilesByType(sprites.dungeon.greenOuterNorthEast)) {
-            tiles.setTileAt(Wert6, sprites.dungeon.darkGroundCenter)
-            tiles.setWallAt(Wert6, false)
+        for (let Wert63 of tiles.getTilesByType(sprites.dungeon.greenOuterNorthEast)) {
+            tiles.setTileAt(Wert63, sprites.dungeon.darkGroundCenter)
+            tiles.setWallAt(Wert63, false)
         }
-        for (let Wert6 of tiles.getTilesByType(sprites.dungeon.greenOuterSouthWest)) {
-            tiles.setTileAt(Wert6, sprites.dungeon.darkGroundCenter)
-            tiles.setWallAt(Wert6, false)
+        for (let Wert64 of tiles.getTilesByType(sprites.dungeon.greenOuterSouthWest)) {
+            tiles.setTileAt(Wert64, sprites.dungeon.darkGroundCenter)
+            tiles.setWallAt(Wert64, false)
         }
-        for (let Wert6 of tiles.getTilesByType(sprites.dungeon.greenOuterWest1)) {
-            tiles.setTileAt(Wert6, sprites.dungeon.darkGroundCenter)
-            tiles.setWallAt(Wert6, false)
+        for (let Wert65 of tiles.getTilesByType(sprites.dungeon.greenOuterWest1)) {
+            tiles.setTileAt(Wert65, sprites.dungeon.darkGroundCenter)
+            tiles.setWallAt(Wert65, false)
         }
     }
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
-    LifeLost()
 })
 function LifeLost () {
     if (game.runtime() - Safe_at_ms > 200) {
@@ -116,6 +116,9 @@ function NextLevel () {
     } else if (Level == 6) {
         tiles.setTilemap(tilemap`Level_6`)
     } else {
+        for (let index = 0; index < info.life(); index++) {
+            info.changeScoreBy(1000)
+        }
         game.over(true)
     }
     tiles.placeOnRandomTile(Hero, sprites.dungeon.collectibleInsignia)
@@ -137,7 +140,7 @@ controller.moveSprite(Hero)
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(2)
-Level = 4
+Level = 0
 Safe_at_ms = 0
 info.setScore(-200)
 let Ghost_Number = 1
