@@ -3,14 +3,6 @@
 
 > Diese Seite bei [https://simko11.github.io/mystery-castle-levels/](https://simko11.github.io/mystery-castle-levels/) öffnen
 
-## Als Erweiterung verwenden
-
-Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
-
-* öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* klicke auf **Neues Projekt**
-* klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/simko11/mystery-castle-levels** suchen und importieren
 
 ## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/simko11/mystery-castle-levels/workflows/MakeCode/badge.svg)
 
