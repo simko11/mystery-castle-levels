@@ -115,6 +115,10 @@ function NextLevel () {
         tiles.setTilemap(tilemap`Level_5`)
     } else if (Level == 6) {
         tiles.setTilemap(tilemap`Level_6`)
+    } else if (Level == 7) {
+        tiles.setCurrentTilemap(tilemap`Level_7`)
+    } else if (Level == 8) {
+        tiles.setCurrentTilemap(tilemap`Level_8`)
     } else {
         for (let index = 0; index < info.life(); index++) {
             info.changeScoreBy(1000)
