@@ -119,6 +119,8 @@ function NextLevel () {
         tiles.setCurrentTilemap(tilemap`Level_7`)
     } else if (Level == 8) {
         tiles.setCurrentTilemap(tilemap`Level_8`)
+    } else if (Level == 9) {
+        tiles.setCurrentTilemap(tilemap`Level_9`)
     } else {
         for (let index = 0; index < info.life(); index++) {
             info.changeScoreBy(1000)
