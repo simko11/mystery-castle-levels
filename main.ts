@@ -230,7 +230,7 @@ true
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(2)
-Level = 13
+Level = 0
 Safe_at_ms = 0
 info.setScore(-200)
 let Ghost_Number = 1
