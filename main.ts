@@ -125,6 +125,12 @@ function NextLevel () {
         tiles.setCurrentTilemap(tilemap`Level_10`)
     } else if (Level == 11) {
         tiles.setCurrentTilemap(tilemap`Level_11`)
+    } else if (Level == 12) {
+        tiles.setCurrentTilemap(tilemap`Level_12`)
+    } else if (Level == 13) {
+        tiles.setCurrentTilemap(tilemap`Level_13`)
+    } else if (Level == 14) {
+        tiles.setCurrentTilemap(tilemap`Level_14`)
     } else {
         for (let index = 0; index < info.life(); index++) {
             info.changeScoreBy(1000)
@@ -224,7 +230,7 @@ true
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(2)
-Level = 0
+Level = 13
 Safe_at_ms = 0
 info.setScore(-200)
 let Ghost_Number = 1
