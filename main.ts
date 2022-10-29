@@ -102,7 +102,9 @@ function NextLevel () {
     Level += 1
     info.changeLifeBy(1)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-    Ghost_Number += 1
+    if (Ghost_Number < 5) {
+        Ghost_Number += 1
+    }
     if (Level == 1) {
         tiles.setTilemap(tilemap`Level_1`)
     } else if (Level == 2) {
@@ -148,6 +150,7 @@ let Ghost: Sprite = null
 let Ghost_Speed = 0
 let TileX = 0
 let TileY = 0
+let Ghost_Number = 0
 let Safe_at_ms = 0
 let Level = 0
 let Hero: Sprite = null
@@ -233,7 +236,7 @@ info.setLife(2)
 Level = 0
 Safe_at_ms = 0
 info.setScore(-200)
-let Ghost_Number = 1
+Ghost_Number = 1
 NextLevel()
 game.onUpdateInterval(10000, function () {
     for (let index = 0; index < Ghost_Number; index++) {
