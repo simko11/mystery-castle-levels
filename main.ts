@@ -133,6 +133,10 @@ function NextLevel () {
         tiles.setCurrentTilemap(tilemap`Level_13`)
     } else if (Level == 14) {
         tiles.setCurrentTilemap(tilemap`Level_14`)
+    } else if (Level == 15) {
+        tiles.setCurrentTilemap(tilemap`Level_15`)
+    } else if (Level == 16) {
+        tiles.setCurrentTilemap(tilemap`Level_17`)
     } else {
         for (let index = 0; index < info.life(); index++) {
             info.changeScoreBy(1000)
