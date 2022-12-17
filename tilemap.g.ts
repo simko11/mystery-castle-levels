@@ -464,8 +464,8 @@ namespace myTiles {
 2 2 2 . . . . . 2 2 2 2 2 2 . 2 
 `, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.chestClosed,sprites.dungeon.collectibleInsignia,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterWest0,sprites.dungeon.stairSouth], TileScale.Sixteen);
             case "Level_17":
-            case "Level18":return tiles.createTilemap(hex`1000100001010303030103030301030303010101010302020203020202030202020301010103020303030203020302030303010101030203030302020203020202030101010302020203020302030303020301010101030303010303030302020203010101010101010101010101030303010101010303030101030303010103010101010302020203030202020303020301010101030203010302030301030203010101010302030303020202030302030101010103020303030203030103020303010101010301030302020203030202020301010101010101030303010103030301010101010101010101010101010108090701010101010101010101010101060405`, img`
-2 2 . . . 2 . . . 2 . . . 2 2 2 
+            case "Level18":return tiles.createTilemap(hex`100010000a010303030103030301030303010101010302020203020202030202020301010103020303030203020302030303010101030203030302020203020202030101010302020203020302030303020301010101030303010303030302020203010101010101010101010101030303010101010303030101030303010103010101010302020203030202020303020301010101030203010302030301030203010101010302030303020202030302030101010103020303030203030103020303010101010301030302020203030202020301010101010101030303010103030301010101010101010101010101010108090701010101010101010101010101060405`, img`
+. 2 . . . 2 . . . 2 . . . 2 2 2 
 2 . . . . . . . . . . . . . 2 2 
 2 . . . . . . . . . . . . . 2 2 
 2 . . . . . . . . . . . . . 2 2 
@@ -481,7 +481,7 @@ namespace myTiles {
 2 2 2 2 2 2 . . . 2 2 . . . 2 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 2 
-`, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.chestClosed,sprites.dungeon.greenOuterNorth2,sprites.dungeon.stairSouth,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterWest0,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile1,sprites.dungeon.chestClosed,sprites.dungeon.greenOuterNorth2,sprites.dungeon.stairSouth,sprites.dungeon.greenOuterEast0,sprites.dungeon.greenOuterWest0,sprites.dungeon.greenOuterNorthEast,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.collectibleInsignia], TileScale.Sixteen);
         }
         return null;
     })
