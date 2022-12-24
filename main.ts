@@ -13,28 +13,32 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         pause(100)
         tiles.setTileAt(tiles.getTileLocation(TileX + 1, TileY), sprites.dungeon.darkGroundCenter)
         tiles.setWallAt(tiles.getTileLocation(TileX + 1, TileY), false)
+        info.changeScoreBy(1)
     } else if (Hero.tileKindAt(TileDirection.Left, assets.tile`myTile`)) {
         Hero.setImage(assets.image`Attack Left`)
         pause(100)
         tiles.setTileAt(tiles.getTileLocation(TileX - 1, TileY), sprites.dungeon.darkGroundCenter)
         tiles.setWallAt(tiles.getTileLocation(TileX - 1, TileY), false)
+        info.changeScoreBy(1)
     } else if (Hero.tileKindAt(TileDirection.Top, assets.tile`myTile`)) {
         Hero.setImage(assets.image`Attack Up`)
         pause(100)
         tiles.setTileAt(tiles.getTileLocation(TileX, TileY + -1), sprites.dungeon.darkGroundCenter)
         tiles.setWallAt(tiles.getTileLocation(TileX, TileY + -1), false)
+        info.changeScoreBy(1)
     } else if (Hero.tileKindAt(TileDirection.Bottom, assets.tile`myTile`)) {
         Hero.setImage(assets.image`Attack Down`)
         pause(100)
         tiles.setTileAt(tiles.getTileLocation(TileX, TileY - -1), sprites.dungeon.darkGroundCenter)
         tiles.setWallAt(tiles.getTileLocation(TileX, TileY - -1), false)
+        info.changeScoreBy(1)
     }
     for (let Wert of sprites.allOfKind(SpriteKind.Enemy)) {
         if (Math.abs(Hero.x - Wert.x) < 28 && Math.abs(Hero.y - Wert.y) < 28) {
             Hero.setImage(assets.image`Attack Left`)
             pause(100)
             Wert.destroy()
-            info.changeScoreBy(5)
+            info.changeScoreBy(50)
         }
     }
     Hero.setImage(assets.image`Normal`)
@@ -47,7 +51,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (spri
     NextLevel()
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite2, location2) {
-    info.changeScoreBy(50)
+    info.changeScoreBy(250)
     tiles.setTileAt(location2, sprites.dungeon.darkGroundCenter)
     if (tiles.getTilesByType(sprites.dungeon.chestClosed).length == 0) {
         for (let Wert2 of tiles.getTilesByType(sprites.dungeon.greenOuterNorthWest)) {
@@ -98,7 +102,7 @@ function LifeLost () {
     }
 }
 function NextLevel () {
-    info.changeScoreBy(200)
+    info.changeScoreBy(1000)
     Level += 1
     info.changeLifeBy(1)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
@@ -139,7 +143,7 @@ function NextLevel () {
         tiles.setCurrentTilemap(tilemap`Level_17`)
     } else {
         for (let index = 0; index < info.life(); index++) {
-            info.changeScoreBy(1000)
+            info.changeScoreBy(10000)
         }
         game.over(true)
     }
@@ -239,7 +243,7 @@ scene.cameraFollowSprite(Hero)
 info.setLife(2)
 Level = 0
 Safe_at_ms = 0
-info.setScore(-200)
+info.setScore(-1000)
 Ghost_Number = 1
 NextLevel()
 game.onUpdateInterval(10000, function () {
