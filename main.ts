@@ -44,7 +44,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         if (Math.abs(Hero.x - Wert.x) < 28 && Math.abs(Hero.y - Wert.y) < 28) {
             Hero.setImage(assets.image`Attack Left`)
             pause(100)
-            Wert.destroy()
+            sprites.changeDataNumberBy(Wert, "Life", -1)
+            if (sprites.readDataNumber(Wert, "Life") == 0) {
+                Wert.destroy()
+            }
             info.changeScoreBy(50)
         }
     }
@@ -174,7 +177,7 @@ let Ghost_Number = 0
 let Safe_at_ms = 0
 let Level = 0
 let Hero: Sprite = null
-game.showLongText("Befreie dich aus der Höhle der Geisterskelette! Schlage mit deinem Schwert(A) die Geister und Mauern um sie zu zerstören. Sammele alle Kisten um auf das nächste Level zu kommen. Nach jedem Level bekommst du ein Leben mehr.  Los geht´s", DialogLayout.Full)
+game.showLongText("Befreie dich aus der Höhle der Geisterskelette! Schlage mit deinem Schwert(A) die Geister und Mauern um sie zu zerstören. Sammle alle Kisten um auf das nächste Level zu kommen. Nach jedem Level bekommst du ein Leben mehr.  Los geht´s", DialogLayout.Full)
 Hero = sprites.create(assets.image`Normal`, SpriteKind.Player)
 controller.moveSprite(Hero)
 animation.runImageAnimation(
@@ -254,7 +257,7 @@ true
 Hero.setBounceOnWall(true)
 scene.cameraFollowSprite(Hero)
 info.setLife(2)
-Level = 17
+Level = 0
 Safe_at_ms = 0
 info.setScore(-1000)
 Ghost_Number = 1
@@ -371,23 +374,23 @@ game.onUpdateInterval(10000, function () {
             )
             tiles.placeOnRandomTile(Ghost, sprites.dungeon.greenOuterNorth2)
             Ghost.follow(Hero, Ghost_Speed)
+            sprites.setDataNumber(Ghost, "Life", 1)
         }
         Ghost_Speed += 5
     }
 })
 game.onUpdateInterval(10000, function () {
     if (tiles.getTilesByType(assets.tile`Spawn`).length > 0) {
-        for (let index = 0; index < Ghost_Number; index++) {
-            Ghost_2 = sprites.create(assets.image`skellyFront0`, SpriteKind.Enemy)
-            animation.runImageAnimation(
-            Ghost_2,
-            assets.animation`enemy_2`,
-            100,
-            true
-            )
-            tiles.placeOnRandomTile(Ghost_2, assets.tile`Spawn`)
-            Ghost_2.follow(Hero, Ghost_Speed)
-        }
+        Ghost_2 = sprites.create(assets.image`skellyFront0`, SpriteKind.Enemy)
+        animation.runImageAnimation(
+        Ghost_2,
+        assets.animation`enemy_2`,
+        100,
+        true
+        )
+        tiles.placeOnRandomTile(Ghost_2, assets.tile`Spawn`)
+        Ghost_2.follow(Hero, Ghost_Speed)
+        sprites.setDataNumber(Ghost_2, "Life", 3)
         Ghost_Speed += 5
     }
 })
