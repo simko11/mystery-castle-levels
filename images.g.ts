@@ -184,6 +184,25 @@ fcf.f222222f44ee........
 ........................
 ........................
 `;
+            case "image7":
+            case "Spider":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f f . . . . . . 
+. . . . f f f f 2 f f f f . . . 
+. . . . f 2 f f f f f 2 f . . . 
+. . . . f f f f f f f f f . . . 
+. f f f f f 1 f f f 1 f f f f f 
+. f . . . . f f f f f . . . . f 
+. f . . . . f f f f f . . . . f 
+. . . f f f f f f f f f f f . . 
+. . . f . . f f f f f . . f . . 
+. . . f . . f f f f f . . f . . 
+. f f f f f f f f f f f f f f f 
+. f . . f f f f f f f f f . . f 
+. f . . f . . . . . . . f . . f 
+. f . . f . . . . . . . f . . f 
+`;
         }
         return null;
     })
@@ -292,13 +311,67 @@ fcf.f222222f44ee........
 ........................
 ........................
 `];
+            case "myAnim":
+            case "anim2":return [img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f f . . . . . . 
+. . . . f f f f 2 f f f f . . . 
+. . . . f 2 f f f f f 2 f . . . 
+. . . . f f f f f f f f f . . . 
+. f f f f f 1 f f f 1 f f f f f 
+. f . . . . f f f f f . . . . f 
+. f . . . . f f f f f . . . . f 
+. . . f f f f f f f f f f f . . 
+. . . f . . f f f f f . . f . . 
+. . . f . . f f f f f . . f . . 
+. f f f f f f f f f f f f f f f 
+. f . . f f f f f f f f f . . f 
+. f . . f . . . . . . . f . . f 
+. f . . f . . . . . . . f . . f 
+`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f f . . . . . . 
+. . . . f f f f 2 f f f f . . . 
+. f . . f 2 f f f f f 2 f . . f 
+. f . . f f f f f f f f f . . f 
+. f f f f f 1 f f f 1 f f f f f 
+. . . . . . f f f f f . . . . . 
+. . . . . . f f f f f . . . . . 
+. f f f f f f f f f f f f f f f 
+. . . . . . f f f f f . . . . . 
+. . . . . . f f f f f . . . . . 
+. f f f f f f f f f f f f f f f 
+. f . . f f f f f f f f f . . f 
+. f . . f . . . . . . . f . . f 
+. f . . f . . . . . . . f . . f 
+`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f f . . . . . . 
+. . . . f f f f 2 f f f f . . . 
+. . . . f 2 f f f f f 2 f . . . 
+. . . . f f f f f f f f f . . . 
+. f f f f f 1 f f f 1 f f f f f 
+. f . . . . f f f f f . . . . f 
+. f . . . . f f f f f . . . . f 
+. . . f f f f f f f f f f f . . 
+. . . f . . f f f f f . . f . . 
+. . . f . . f f f f f . . f . . 
+. f f f f f f f f f f f f f f f 
+. f . . f f f f f f f f f . . f 
+. f . . f . . . . . . . f . . f 
+. f . . f . . . . . . . f . . f 
+`];
         }
         return null;
     })
 
     helpers._registerFactory("song", function(name: string) {
         switch(helpers.stringTrim(name)) {
-
+            case "song1":
+            case "meinLied":return hex`00780004080200`;
         }
         return null;
     })
