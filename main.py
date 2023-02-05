@@ -6,19 +6,25 @@ scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.stair_north,
     on_overlap_tile)
 
-def on_overlap_tile2(sprite2, location2):
-    if controller.B.is_pressed():
-        for Wert in tiles.get_tiles_by_type(sprites.dungeon.green_outer_north2):
-            tiles.set_tile_at(Wert, sprites.dungeon.chest_closed)
-scene.on_overlap_tile(SpriteKind.player,
-    assets.tile("""
-        Schalter
-    """),
-    on_overlap_tile2)
-
 def on_on_overlap(sprite3, otherSprite):
     LifeLost()
 sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
+
+def on_overlap_tile2(sprite6, location5):
+    global Safe_at_ms
+    Safe_at_ms = game.runtime()
+    NextLevel()
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.stair_south,
+    on_overlap_tile2)
+
+def on_overlap_tile3(sprite5, location4):
+    global Safe_at_ms
+    Safe_at_ms = game.runtime()
+    NextLevel()
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.stair_west,
+    on_overlap_tile3)
 
 def on_a_pressed():
     global TileY, TileX
@@ -83,21 +89,7 @@ def on_a_pressed():
     """))
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
-def on_overlap_tile3(sprite4, location3):
-    LifeLost()
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.hazard_lava0,
-    on_overlap_tile3)
-
-def on_overlap_tile4(sprite5, location4):
-    global Safe_at_ms
-    Safe_at_ms = game.runtime()
-    NextLevel()
-scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.stair_west,
-    on_overlap_tile4)
-
-def on_overlap_tile5(sprite22, location22):
+def on_overlap_tile4(sprite22, location22):
     info.change_score_by(250)
     tiles.set_tile_at(location22, sprites.dungeon.dark_ground_center)
     if len(tiles.get_tiles_by_type(sprites.dungeon.chest_closed)) == 0:
@@ -130,7 +122,7 @@ def on_overlap_tile5(sprite22, location22):
             tiles.set_wall_at(Wert65, False)
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.chest_closed,
-    on_overlap_tile5)
+    on_overlap_tile4)
 
 def LifeLost():
     global Safe_at_ms, Ghost_Speed
@@ -226,12 +218,16 @@ def NextLevel():
         """))
     elif Level == 20:
         tiles.set_current_tilemap(tilemap("""
-            Level_19
+            Level_20
         """))
     elif Level == 21:
-        tiles.set_current_tilemap(tilemap("""Level_21"""))
+        tiles.set_current_tilemap(tilemap("""
+            Level_21
+        """))
     elif Level == 22:
-        tiles.set_current_tilemap(tilemap("""Level_20"""))
+        tiles.set_current_tilemap(tilemap("""
+            Level_0
+        """))
     else:
         for index in range(info.life()):
             info.change_score_by(10000)
@@ -239,12 +235,20 @@ def NextLevel():
     tiles.place_on_random_tile(Hero, sprites.dungeon.collectible_insignia)
     Ghost_Speed = 20
 
-def on_overlap_tile6(sprite6, location5):
-    global Safe_at_ms
-    Safe_at_ms = game.runtime()
-    NextLevel()
+def on_overlap_tile5(sprite2, location2):
+    if controller.B.is_pressed():
+        for Wert in tiles.get_tiles_by_type(sprites.dungeon.green_outer_north2):
+            tiles.set_tile_at(Wert, sprites.dungeon.chest_closed)
 scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.stair_south,
+    assets.tile("""
+        Schalter
+    """),
+    on_overlap_tile5)
+
+def on_overlap_tile6(sprite4, location3):
+    LifeLost()
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.hazard_lava0,
     on_overlap_tile6)
 
 Ghost_2: Sprite = None
@@ -340,7 +344,7 @@ animation.run_image_animation(Hero,
 Hero.set_bounce_on_wall(True)
 scene.camera_follow_sprite(Hero)
 info.set_life(2)
-Level = 0
+Level = 20
 Safe_at_ms = 0
 info.set_score(-1000)
 Ghost_Number = 1
