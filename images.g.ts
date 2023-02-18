@@ -370,8 +370,7 @@ fcf.f222222f44ee........
 
     helpers._registerFactory("song", function(name: string) {
         switch(helpers.stringTrim(name)) {
-            case "song1":
-            case "meinLied":return hex`00780004080200`;
+
         }
         return null;
     })

@@ -1,3 +1,103 @@
+
+Ghost_2: Sprite = None
+Ghost: Sprite = None
+Ghost_Speed = 0
+TileX = 0
+TileY = 0
+Ghost_Number = 0
+Safe_at_ms = 0
+Level = 0
+Hero: Sprite = None
+game.show_long_text("Befreie dich aus der Höhle der Geisterskelette! Schlage mit deinem Schwert(A) die Geister und Mauern um sie zu zerstören. Sammle alle Kisten um auf das nächste Level zu kommen. Nach jedem Level bekommst du ein Leben mehr.  Los geht´s",
+    DialogLayout.FULL)
+Hero = sprites.create(assets.image("""
+    Normal
+"""), SpriteKind.player)
+controller.move_sprite(Hero)
+animation.run_image_animation(Hero,
+    [img("""
+            . . . . . . f f f f . . . . . .
+                . . . . f f f 2 2 f f f . . . .
+                . . . f f f 2 2 2 2 f f f . . .
+                . . f f f e e e e e e f f f . .
+                . . f f e 2 2 2 2 2 2 e e f . .
+                . . f e 2 f f f f f f 2 e f . .
+                . . f f f f e e e e f f f f . .
+                . f f e f b f 4 4 f b f e f f .
+                . f e e 4 1 f d d f 1 4 e e f .
+                . . f f f f d d d d d e e f . .
+                . f d d d d f 4 4 4 e e f . . .
+                . f b b b b f 2 2 2 2 f 4 e . .
+                . f b b b b f 2 2 2 2 f d 4 . .
+                . . f c c f 4 5 5 4 4 f 4 4 . .
+                . . . f f f f f f f f . . . . .
+                . . . . . f f . . f f . . . . .
+        """),
+        img("""
+            . . . . . . . . . . . . . . . .
+                . . . . . . f f f f . . . . . .
+                . . . . f f f 2 2 f f f . . . .
+                . . . f f f 2 2 2 2 f f f . . .
+                . . f f f e e e e e e f f f . .
+                . . f f e 2 2 2 2 2 2 e e f . .
+                . f f e 2 f f f f f f 2 e f f .
+                . f f f f f e e e e f f f f f .
+                . . f e f b f 4 4 f b f e f . .
+                . f f e 4 1 f d d f 1 4 e f . .
+                f d f f e 4 d d d d 4 e f e . .
+                f b f e f 2 2 2 2 e d d 4 e . .
+                f b f 4 f 2 2 2 2 e d d e . . .
+                f c f . f 4 4 5 5 f e e . . . .
+                . f f . f f f f f f f . . . . .
+                . . . . f f f . . . . . . . . .
+        """),
+        img("""
+            . . . . . . . . . . . . . . . .
+                . . . . . . f f f f . . . . . .
+                . . . . f f f 2 2 f f f . . . .
+                . . . f f f 2 2 2 2 f f f . . .
+                . . f f f e e e e e e f f f . .
+                . . f e e 2 2 2 2 2 2 e f f . .
+                . f f e 2 f f f f f f 2 e f f .
+                . f f f f f e e e e f f f f f .
+                . . f e f b f 4 4 f b f e f . .
+                . . f e 4 1 f d d f 1 4 e f . .
+                . . e f f f f d d d 4 e f . . .
+                . . f d d d d f 2 2 2 f e f . .
+                . . f b b b b f 2 2 2 f 4 e . .
+                . . f b b b b f 5 4 4 f . . . .
+                . . . f c c f f f f f f . . . .
+                . . . . f f . . . f f f . . . .
+        """),
+        img("""
+            . . . . . . . . . . . . . . . .
+                . . . . . . f f f f . . . . . .
+                . . . . f f f 2 2 f f f . . . .
+                . . . f f f 2 2 2 2 f f f . . .
+                . . f f f e e e e e e f f f . .
+                . . f e e 2 2 2 2 2 2 e f f . .
+                . f f e 2 f f f f f f 2 e f f .
+                . f f f f f e e e e f f f f f .
+                . . f e f b f 4 4 f b f e f . .
+                . . f e 4 1 f d d f 1 4 e f f .
+                . . e f e 4 d d d d 4 e f f d f
+                . . e 4 d d e 2 2 2 2 f e f b f
+                . . . e d d e 2 2 2 2 f 4 f b f
+                . . . . e e f 5 5 4 4 f . f c f
+                . . . . . f f f f f f f . f f .
+                . . . . . . . . . f f f . . . .
+        """)],
+    100,
+    True)
+Hero.set_bounce_on_wall(True)
+scene.camera_follow_sprite(Hero)
+info.set_life(2)
+Level = 0
+Safe_at_ms = 0
+info.set_score(-1000)
+Ghost_Number = 1
+NextLevel()
+
 def on_overlap_tile(sprite, location):
     global Safe_at_ms
     Safe_at_ms = game.runtime()
@@ -225,9 +325,7 @@ def NextLevel():
             Level_21
         """))
     elif Level == 22:
-        tiles.set_current_tilemap(tilemap("""
-            Level_0
-        """))
+        tiles.set_current_tilemap(tilemap("""Level_0"""))
     else:
         for index in range(info.life()):
             info.change_score_by(10000)
@@ -250,105 +348,6 @@ def on_overlap_tile6(sprite4, location3):
 scene.on_overlap_tile(SpriteKind.player,
     sprites.dungeon.hazard_lava0,
     on_overlap_tile6)
-
-Ghost_2: Sprite = None
-Ghost: Sprite = None
-Ghost_Speed = 0
-TileX = 0
-TileY = 0
-Ghost_Number = 0
-Safe_at_ms = 0
-Level = 0
-Hero: Sprite = None
-game.show_long_text("Befreie dich aus der Höhle der Geisterskelette! Schlage mit deinem Schwert(A) die Geister und Mauern um sie zu zerstören. Sammle alle Kisten um auf das nächste Level zu kommen. Nach jedem Level bekommst du ein Leben mehr.  Los geht´s",
-    DialogLayout.FULL)
-Hero = sprites.create(assets.image("""
-    Normal
-"""), SpriteKind.player)
-controller.move_sprite(Hero)
-animation.run_image_animation(Hero,
-    [img("""
-            . . . . . . f f f f . . . . . . 
-                . . . . f f f 2 2 f f f . . . . 
-                . . . f f f 2 2 2 2 f f f . . . 
-                . . f f f e e e e e e f f f . . 
-                . . f f e 2 2 2 2 2 2 e e f . . 
-                . . f e 2 f f f f f f 2 e f . . 
-                . . f f f f e e e e f f f f . . 
-                . f f e f b f 4 4 f b f e f f . 
-                . f e e 4 1 f d d f 1 4 e e f . 
-                . . f f f f d d d d d e e f . . 
-                . f d d d d f 4 4 4 e e f . . . 
-                . f b b b b f 2 2 2 2 f 4 e . . 
-                . f b b b b f 2 2 2 2 f d 4 . . 
-                . . f c c f 4 5 5 4 4 f 4 4 . . 
-                . . . f f f f f f f f . . . . . 
-                . . . . . f f . . f f . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                . . . . . . f f f f . . . . . . 
-                . . . . f f f 2 2 f f f . . . . 
-                . . . f f f 2 2 2 2 f f f . . . 
-                . . f f f e e e e e e f f f . . 
-                . . f f e 2 2 2 2 2 2 e e f . . 
-                . f f e 2 f f f f f f 2 e f f . 
-                . f f f f f e e e e f f f f f . 
-                . . f e f b f 4 4 f b f e f . . 
-                . f f e 4 1 f d d f 1 4 e f . . 
-                f d f f e 4 d d d d 4 e f e . . 
-                f b f e f 2 2 2 2 e d d 4 e . . 
-                f b f 4 f 2 2 2 2 e d d e . . . 
-                f c f . f 4 4 5 5 f e e . . . . 
-                . f f . f f f f f f f . . . . . 
-                . . . . f f f . . . . . . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                . . . . . . f f f f . . . . . . 
-                . . . . f f f 2 2 f f f . . . . 
-                . . . f f f 2 2 2 2 f f f . . . 
-                . . f f f e e e e e e f f f . . 
-                . . f e e 2 2 2 2 2 2 e f f . . 
-                . f f e 2 f f f f f f 2 e f f . 
-                . f f f f f e e e e f f f f f . 
-                . . f e f b f 4 4 f b f e f . . 
-                . . f e 4 1 f d d f 1 4 e f . . 
-                . . e f f f f d d d 4 e f . . . 
-                . . f d d d d f 2 2 2 f e f . . 
-                . . f b b b b f 2 2 2 f 4 e . . 
-                . . f b b b b f 5 4 4 f . . . . 
-                . . . f c c f f f f f f . . . . 
-                . . . . f f . . . f f f . . . .
-        """),
-        img("""
-            . . . . . . . . . . . . . . . . 
-                . . . . . . f f f f . . . . . . 
-                . . . . f f f 2 2 f f f . . . . 
-                . . . f f f 2 2 2 2 f f f . . . 
-                . . f f f e e e e e e f f f . . 
-                . . f e e 2 2 2 2 2 2 e f f . . 
-                . f f e 2 f f f f f f 2 e f f . 
-                . f f f f f e e e e f f f f f . 
-                . . f e f b f 4 4 f b f e f . . 
-                . . f e 4 1 f d d f 1 4 e f f . 
-                . . e f e 4 d d d d 4 e f f d f 
-                . . e 4 d d e 2 2 2 2 f e f b f 
-                . . . e d d e 2 2 2 2 f 4 f b f 
-                . . . . e e f 5 5 4 4 f . f c f 
-                . . . . . f f f f f f f . f f . 
-                . . . . . . . . . f f f . . . .
-        """)],
-    100,
-    True)
-Hero.set_bounce_on_wall(True)
-scene.camera_follow_sprite(Hero)
-info.set_life(2)
-Level = 20
-Safe_at_ms = 0
-info.set_score(-1000)
-Ghost_Number = 1
-NextLevel()
 
 def on_update_interval():
     global Ghost, Ghost_Speed

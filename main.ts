@@ -156,7 +156,7 @@ function NextLevel () {
     } else if (Level == 21) {
         tiles.setCurrentTilemap(tilemap`Level_21`)
     } else if (Level == 22) {
-        tiles.setCurrentTilemap(tilemap`Level_0`)
+        tiles.setCurrentTilemap(tilemap`Level_22`)
     } else {
         for (let index = 0; index < info.life(); index++) {
             info.changeScoreBy(10000)
